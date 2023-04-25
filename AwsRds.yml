@@ -2,6 +2,11 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: my RDS instance
 
+Parameters:
+  RDSMasterPassword:
+    Type: String
+    NoEcho: true
+
 Resources:
   RDSSSMPMasterPassword:
     Type: AWS::SSM::Parameter
