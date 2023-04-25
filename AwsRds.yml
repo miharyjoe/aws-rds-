@@ -20,4 +20,3 @@ Resources:
       EngineVersion: 11.5
       MasterUsername: admin
       MasterUserPassword: "{{resolve:ssm:/rds/master/password:1}}"
-      DBSubnetGroupName: !Ref RDSDBSubnetGroup
