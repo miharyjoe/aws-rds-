@@ -26,4 +26,6 @@ jobs:
           aws cloudformation deploy \
             --template-file ./AwsRds.yml \
             --stack-name my-stack \
+            --parameter-overrides \
+              RDSMasterPassword=${{ secrets.RDS_MASTER_PASSWORD }} \
             --capabilities CAPABILITY_NAMED_IAM
