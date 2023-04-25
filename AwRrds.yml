@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: my RDS instance
+
+Resources:
+  RDSSSMPMasterPassword:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /rds/master/password
+      Type: SecureString
+      Value: !Ref RDSMasterPassword
+
+  RDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: 20
+      DBInstanceClass: db.t2.micro
+      DBInstanceIdentifier: my-db-instance
+      Engine: postgres
+      EngineVersion: 11.5
+      MasterUsername: admin
+      MasterUserPassword: "{{resolve:ssm:/rds/master/password:1}}"
+      DBSubnetGroupName: !Ref RDSDBSubnetGroup
